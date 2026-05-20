@@ -1,0 +1,415 @@
+export interface Recipe {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  rating?: number;
+  time: string;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
+  chef?: string;
+  saves: number;
+  featured?: boolean;
+  ingredients: string[];
+  instructions: string[];
+  category: string;
+}
+
+export const recipes: Recipe[] = [
+  {
+    id: '1',
+    slug: 'mutton-biryani',
+    title: 'Mutton Biryani',
+    description: 'Aromatic basmati rice layered with tender mutton, saffron, and traditional spices. A Bohra classic.',
+    image: '/images/biryani.jpg',
+    rating: 4.9,
+    time: '60 min',
+    difficulty: 'Medium',
+    chef: 'Fatima Bhen',
+    saves: 1234,
+    featured: true,
+    category: 'biryani-rice',
+    ingredients: [
+      '500g Basmati Rice',
+      '1kg Mutton, cut into pieces',
+      '4 large Onions, thinly sliced',
+      '2 cups Yogurt',
+      '2 tbsp Ginger Garlic Paste',
+      '1 tbsp Red Chili Powder',
+      '1 tsp Turmeric Powder',
+      '1 tbsp Biryani Masala',
+      'Whole spices (Cloves, Cardamom, Cinnamon, Bay Leaves)',
+      'A pinch of Saffron soaked in milk',
+      'Fresh Mint and Coriander leaves',
+      '1/2 cup Oil or Ghee'
+    ],
+    instructions: [
+      'Wash and soak the basmati rice for at least 30 minutes.',
+      'Marinate the mutton with yogurt, ginger-garlic paste, red chili powder, turmeric, and half of the biryani masala. Let it rest for at least 2 hours.',
+      'In a large pot, heat oil/ghee and fry the sliced onions until golden brown. Remove half for garnish.',
+      'Add whole spices to the remaining onions, then add the marinated mutton. Cook on medium heat until the meat is tender and oil separates.',
+      'In a separate pot, boil water with salt and whole spices. Add soaked rice and cook until 70% done. Drain the water.',
+      'Layer the partially cooked rice over the meat gravy. Sprinkle the saffron milk, fried onions, and fresh mint/coriander leaves.',
+      'Cover the pot tightly (dum) and cook on very low heat for 15-20 minutes.',
+      'Serve hot with raita and kachumber salad.'
+    ]
+  },
+  {
+    id: '2',
+    slug: 'seekh-kebab',
+    title: 'Seekh Kebab',
+    description: 'Spiced minced meat skewers, grilled to perfection.',
+    image: '/images/kebab.jpg',
+    rating: 4.7,
+    time: '30 min',
+    difficulty: 'Easy',
+    saves: 892,
+    category: 'kebabs-tikka',
+    ingredients: [
+      '500g Minced Meat (Mutton or Beef)',
+      '1 medium Onion, finely chopped and squeezed dry',
+      '1 tbsp Ginger Garlic Paste',
+      '2 Green Chilies, finely chopped',
+      '1 tsp Cumin Powder',
+      '1 tsp Garam Masala',
+      '1 tbsp Fresh Coriander, chopped',
+      'Salt to taste',
+      '2 tbsp Oil or Butter for basting'
+    ],
+    instructions: [
+      'Mix the minced meat with chopped onions, ginger-garlic paste, green chilies, and all powdered spices.',
+      'Knead the mixture well for 5-10 minutes until it becomes sticky.',
+      'Wet your hands and mold portions of the meat mixture onto skewers, shaping them into long sausages.',
+      'Grill or pan-fry the skewers on medium heat, turning frequently, until browned and cooked through.',
+      'Baste with oil or butter during the last few minutes of cooking for a glossy finish.',
+      'Serve hot with mint chutney and lemon wedges.'
+    ]
+  },
+  {
+    id: '3',
+    slug: 'butter-chicken',
+    title: 'Butter Chicken',
+    description: 'Tender chicken pieces in a rich, creamy tomato gravy.',
+    image: '/images/curry.jpg',
+    time: '40 min',
+    difficulty: 'Medium',
+    saves: 756,
+    category: 'curries',
+    ingredients: [
+      '500g Boneless Chicken, cubed',
+      '1 cup Yogurt',
+      '1 tbsp Ginger Garlic Paste',
+      '2 cups Tomato Purée',
+      '1/2 cup Heavy Cream',
+      '2 tbsp Butter',
+      '1 tsp Kasuri Methi (Dried Fenugreek Leaves)',
+      '1 tbsp Red Chili Powder',
+      '1 tsp Garam Masala'
+    ],
+    instructions: [
+      'Marinate the chicken pieces in yogurt, ginger-garlic paste, and a pinch of salt. Leave for 1 hour.',
+      'Cook the marinated chicken in a pan until lightly charred and cooked through. Set aside.',
+      'In the same pan, melt butter and add tomato purée. Cook until the oil separates.',
+      'Add red chili powder, garam masala, and salt. Stir well.',
+      'Add the cooked chicken to the gravy and simmer for 5-10 minutes.',
+      'Stir in the heavy cream and crushed kasuri methi. Simmer for another 2 minutes.',
+      'Serve hot with naan or rice.'
+    ]
+  },
+  {
+    id: '4',
+    slug: 'sheer-khurma',
+    title: 'Sheer Khurma',
+    description: 'A rich and creamy vermicelli pudding made with milk, dates, and nuts. A festive favorite.',
+    image: '/images/sheer-khurma.jpg',
+    time: '35 min',
+    difficulty: 'Easy',
+    saves: 1567,
+    category: 'desserts',
+    ingredients: [
+      '1 liter Full-Fat Milk',
+      '1/2 cup Fine Vermicelli (Seviyan)',
+      '1/2 cup Sugar',
+      '10-12 Dates, chopped',
+      '1/4 cup Mixed Nuts (Almonds, Pistachios, Cashews), sliced',
+      '2 tbsp Ghee',
+      '1/2 tsp Cardamom Powder',
+      '1 tbsp Rose Water'
+    ],
+    instructions: [
+      'Heat ghee in a heavy-bottomed pan and roast the sliced nuts and dates for a minute. Remove and set aside.',
+      'In the same pan, roast the vermicelli until golden brown.',
+      'Pour in the milk and bring to a boil. Reduce heat and let it simmer until the milk reduces slightly and the vermicelli is cooked.',
+      'Add sugar and the roasted nuts/dates (reserving some for garnish). Simmer for another 5-10 minutes until it thickens.',
+      'Stir in the cardamom powder and rose water. Turn off the heat.',
+      'Serve warm or chilled, garnished with the remaining nuts.'
+    ]
+  },
+  {
+    id: '5',
+    slug: 'dal-makhani',
+    title: 'Dal Makhani',
+    description: 'Creamy black lentils simmered overnight with butter and cream.',
+    image: '/images/dal.jpg',
+    rating: 4.7,
+    time: '50 min',
+    difficulty: 'Easy',
+    chef: 'Zahra Ben',
+    saves: 634,
+    featured: true,
+    category: 'lentils-dal',
+    ingredients: [
+      '1 cup Whole Black Lentils (Urad Dal)',
+      '1/4 cup Kidney Beans (Rajma)',
+      '1 large Onion, finely chopped',
+      '2 Tomatoes, pureed',
+      '1 tbsp Ginger Garlic Paste',
+      '3 tbsp Butter',
+      '1/4 cup Heavy Cream',
+      '1 tsp Cumin Seeds',
+      '1 tsp Garam Masala',
+      '1 tsp Red Chili Powder'
+    ],
+    instructions: [
+      'Wash and soak the lentils and kidney beans overnight.',
+      'Pressure cook the soaked lentils and beans with water and salt until very soft and mushy.',
+      'In a heavy pan, melt butter and add cumin seeds. When they splutter, add the chopped onions and fry until golden.',
+      'Add ginger-garlic paste and sauté for a minute, then add the tomato puree, red chili powder, and garam masala. Cook until the butter separates.',
+      'Add the boiled lentils/beans along with their cooking liquid to the pan. Mash slightly with the back of a spoon.',
+      'Simmer on low heat for at least 30 minutes, stirring occasionally. The longer it simmers, the better it tastes.',
+      'Stir in the heavy cream and a dollop of extra butter just before serving.',
+      'Serve hot with jeera rice or naan.'
+    ]
+  },
+  {
+    id: '6',
+    slug: 'crispy-samosa',
+    title: 'Crispy Samosa',
+    description: 'Golden, crispy pastry filled with spiced minced meat or potatoes.',
+    image: '/images/samosa.jpg',
+    time: '60 min',
+    difficulty: 'Hard',
+    saves: 445,
+    category: 'snacks',
+    ingredients: [
+      'For the dough: 2 cups All-Purpose Flour, 1/4 cup Oil, 1/2 tsp Salt, Water to knead',
+      'For the filling: 300g Minced Meat or boiled Potatoes',
+      '1 Onion, finely chopped',
+      '1 tsp Ginger Garlic Paste',
+      '1 tsp Cumin Powder',
+      '1/2 tsp Coriander Powder',
+      '1/2 tsp Garam Masala',
+      'Fresh Coriander and Mint, chopped',
+      'Oil for deep frying'
+    ],
+    instructions: [
+      'Mix flour, salt, and oil. Rub until the mixture resembles breadcrumbs. Add water gradually and knead into a stiff dough. Cover and rest for 30 minutes.',
+      'For the filling, heat a little oil in a pan. Add onions and ginger-garlic paste, and sauté until translucent.',
+      'Add the minced meat (or potatoes) and all the powdered spices. Cook until dry and well-spiced. Let it cool, then mix in fresh coriander and mint.',
+      'Divide the dough into small balls. Roll each ball into a thin oval and cut it in half.',
+      'Form a cone with one half, fill it with the prepared mixture, and seal the edges with a little water.',
+      'Heat oil in a deep frying pan on medium-low heat. Fry the samosas slowly until golden and crisp.',
+      'Drain on paper towels and serve with tamarind chutney.'
+    ]
+  },
+  {
+    id: '7',
+    slug: 'haleem',
+    title: 'Haleem',
+    description: 'Slow-cooked wheat and meat stew, perfect for Ramadan iftar.',
+    image: '/images/haleem-new.png',
+    rating: 4.8,
+    time: '4 hrs',
+    difficulty: 'Hard',
+    chef: 'Sakina Bai',
+    saves: 2104,
+    featured: true,
+    category: 'lentils-dal',
+    ingredients: [
+      '500g Boneless Mutton or Beef',
+      '1 cup Cracked Wheat (Dalia), soaked',
+      '1/4 cup Mixed Lentils (Chana Dal, Masoor Dal, Moong Dal), soaked',
+      '2 large Onions, sliced and fried crisp (Birista)',
+      '2 tbsp Ginger Garlic Paste',
+      '1 tbsp Haleem Masala (or a mix of Garam Masala, Cumin, and Coriander powder)',
+      '1/2 cup Yogurt',
+      '1/2 cup Ghee',
+      'Fresh Mint, Coriander, Lemon Wedges, and Ginger juliennes for garnish'
+    ],
+    instructions: [
+      'In a large pot, heat ghee and add ginger-garlic paste, followed by the meat. Sauté until lightly browned.',
+      'Add the haleem masala, yogurt, and half of the fried onions. Mix well and cook for 5 minutes.',
+      'Add water and pressure cook the meat until it is tender enough to shred easily.',
+      'In a separate pot, boil the soaked wheat and lentils with water and a pinch of turmeric until completely soft.',
+      'Shred the cooked meat and add it to the wheat/lentil mixture along with its gravy.',
+      'Now comes the crucial step: use a wooden masher (ghotni) or a hand blender to mash and mix everything together over low heat.',
+      'Continue slow-cooking and mashing for at least 1-2 hours until it reaches a thick, sticky, homogenous consistency.',
+      'Serve hot, garnished with the remaining fried onions, fresh mint/coriander, ginger juliennes, and a squeeze of lemon.'
+    ]
+  },
+  {
+    id: '8',
+    slug: 'tandoori-naan',
+    title: 'Tandoori Naan',
+    description: 'Soft, fluffy bread baked in traditional clay oven.',
+    image: '/images/naan.jpg',
+    rating: 4.6,
+    time: '30 min',
+    difficulty: 'Medium',
+    chef: 'Maryam Bai',
+    saves: 520,
+    featured: true,
+    category: 'breads',
+    ingredients: [
+      '2 cups All-Purpose Flour (Maida)',
+      '1/2 tsp Salt',
+      '1 tsp Sugar',
+      '1 tsp Baking Powder',
+      '1/4 tsp Baking Soda',
+      '2 tbsp Yogurt',
+      '2 tbsp Oil',
+      'Warm Water or Milk to knead',
+      'Butter for brushing'
+    ],
+    instructions: [
+      'In a large bowl, mix the flour, salt, sugar, baking powder, and baking soda.',
+      'Add the yogurt and oil, and mix them into the flour.',
+      'Gradually add warm water or milk and knead into a soft, smooth dough.',
+      'Cover the dough with a damp cloth and let it rest in a warm place for about 2 hours to rise.',
+      'Divide the dough into equal-sized balls. Roll each ball into a teardrop or oval shape, not too thin.',
+      'Brush one side of the rolled naan with water. Heat an iron tawa (griddle) over high heat.',
+      'Place the wet side of the naan on the hot tawa. It will stick to the pan and start to bubble.',
+      'After a minute, turn the tawa upside down directly over the flame to cook the top of the naan until beautifully charred spots appear.',
+      'Remove from the tawa with a spatula, brush generously with butter, and serve immediately.'
+    ]
+  },
+  {
+    id: '9',
+    slug: 'rooh-afza-falooda',
+    title: 'Rooh Afza Falooda',
+    description: 'A refreshing and sweet rose-flavored milk drink layered with vermicelli, basil seeds, and ice cream.',
+    image: '/images/drinks.png',
+    rating: 4.9,
+    time: '15 min',
+    difficulty: 'Easy',
+    saves: 1302,
+    category: 'drinks',
+    ingredients: [
+      '2 cups Cold Milk',
+      '4 tbsp Rooh Afza (Rose Syrup)',
+      '2 tbsp Sweet Basil Seeds (Sabja), soaked in water',
+      '1/2 cup Falooda Sev (Vermicelli), boiled',
+      '2 scoops Vanilla or Pistachio Ice Cream',
+      'Chopped Nuts for garnish'
+    ],
+    instructions: [
+      'In a tall glass, add a spoonful of soaked basil seeds at the bottom.',
+      'Add a layer of boiled falooda sev.',
+      'Drizzle 1 tablespoon of Rooh Afza syrup over the sev.',
+      'Pour cold milk into the glass, leaving some space at the top.',
+      'Top it off with a generous scoop of ice cream.',
+      'Garnish with chopped nuts and an extra drizzle of rose syrup. Serve immediately with a long spoon and straw.'
+    ]
+  },
+  {
+    id: '10',
+    slug: 'kaachi-keri-sharbat',
+    title: 'Kaachi Keri Sharbat',
+    description: 'A refreshing and tangy raw mango drink, perfect for cooling down during the hot summer months.',
+    image: '/images/aam-panna.png',
+    rating: 4.8,
+    time: '25 min',
+    difficulty: 'Easy',
+    saves: 845,
+    category: 'drinks',
+    ingredients: [
+      '2 pieces Raw Mango (Kaachi Keri)',
+      '150g Jaggery (Gol)',
+      '1 tsp Roasted Cumin Powder (Jeera)',
+      '1/2 tsp Black Salt (or Regular Salt)',
+      'A pinch of Black Pepper (Maari)',
+      'Fresh Mint Leaves for garnish',
+      'Ice Cubes'
+    ],
+    instructions: [
+      'Wash and boil the raw mangoes in a pressure cooker or pot until they become very soft.',
+      'Allow them to cool completely, then peel off the skin and extract all the pulp into a bowl.',
+      'In a blender, add the mango pulp, jaggery, roasted cumin powder, black salt, pepper, and a few fresh mint leaves.',
+      'Blend everything into a smooth, thick paste. This is your Aam Panna concentrate.',
+      'To serve, add 2-3 tablespoons of the concentrate into a glass, add ice cubes, and top it off with chilled water.',
+      'Stir well, garnish with fresh mint leaves, and serve chilled.'
+    ]
+  },
+  {
+    id: '11',
+    slug: 'limbu-pani',
+    title: 'Limbu Pani',
+    description: 'A classic, refreshing Indian Lemonade infused with cardamom and a hint of black salt.',
+    image: '/images/limbu-pani.png',
+    rating: 4.7,
+    time: '10 min',
+    difficulty: 'Easy',
+    saves: 950,
+    category: 'drinks',
+    ingredients: [
+      '1 Liter Water',
+      '4-5 Large Lemons',
+      '150g Sugar',
+      '2 Cardamom Pods (Elaichi)',
+      'A pinch of Black Salt',
+      'Ice Cubes'
+    ],
+    instructions: [
+      'Take a deep pan, add 1 liter of water, and place it on the stove to heat.',
+      'Add the sugar and cardamom pods to the water. Boil on high heat until the sugar dissolves completely to make a light syrup.',
+      'Once the syrup is ready, remove it from the stove and let it cool down to room temperature.',
+      'Cut the lemons in half and squeeze their juice into the cooled sugar syrup. Mix thoroughly.',
+      'Add a pinch of black salt for an extra zing and stir well.',
+      'Add ice cubes to the pitcher or glasses to chill it. Your refreshing Limbu Pani is ready to serve!'
+    ]
+  },
+  {
+    id: '12',
+    slug: 'khaman-dhokla',
+    title: 'Khaman Dhokla',
+    description: 'Instant Dawoodi Bohra Style Gujarati Khaman. Soft, fluffy, and savory steamed cakes.',
+    image: '/images/khaman.png',
+    rating: 4.8,
+    time: '25 min',
+    difficulty: 'Medium',
+    saves: 1120,
+    category: 'snacks',
+    ingredients: [
+      '150g Gram Flour (Besan)',
+      '20g Sugar',
+      '1 tsp Turmeric (Haldi) powder',
+      '1 Lemon (Limbu)',
+      'Salt to taste',
+      '3 Green Chilies (Leela Marcha)',
+      'Curry Leaves (Curry Patta)',
+      '1 tsp Mustard Seeds',
+      '2 tbsp Oil',
+      '1 small packet Eno (Fruit Salt)'
+    ],
+    instructions: [
+      'Take a bowl and add gram flour (besan) to it.',
+      'Add salt to taste and sugar to the mixture.',
+      'Add turmeric powder and mix it properly.',
+      'Squeeze the lemon juice into the bowl and mix well.',
+      'Gradually add water and keep mixing until a smooth, slightly thin batter is formed.',
+      'Add the Eno powder, pour a splash of water over it to activate, and gently fold it into the batter.',
+      'Grease a steaming plate with oil and pour the batter into it.',
+      'Heat water in a steamer or large vessel (tapeli). Place the plate inside, cover, and steam for 20 minutes.',
+      'Prepare the tempering by heating oil, adding mustard seeds, curry leaves, and green chilies. Pour it evenly over the steamed khaman.',
+      'Cut into squares and serve hot with green chutney.'
+    ]
+  }
+];
+
+export function getRecipeBySlug(slug: string): Recipe | undefined {
+  return recipes.find((r) => r.slug === slug);
+}
+
+export function getRecipesByCategory(categorySlug: string): Recipe[] {
+  return recipes.filter((r) => r.category === categorySlug);
+}
