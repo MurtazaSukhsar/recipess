@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Quote, Heart } from 'lucide-react'
 
 const stories = [
@@ -13,15 +14,17 @@ const stories = [
     image: '/images/family-cooking.jpg',
     story: 'My grandmother taught me to make biryani when I was just eight years old. Every grain of rice holds a memory of our family gatherings during Eid.',
     recipe: 'Family Biryani Recipe',
+    href: '/recipes/mutton-biryani',
     likes: 234,
   },
   {
     id: 2,
     name: 'Fatima Ben',
     location: 'Dubai, UAE',
-    image: '/images/haleem.jpg',
+    image: '/images/haleem-new.png',
     story: 'Haleem is more than food in our family — it is the taste of Ramadan, of waiting for maghrib, of breaking fast together.',
     recipe: 'Traditional Haleem',
+    href: '/recipes/haleem',
     likes: 189,
   },
   {
@@ -31,6 +34,7 @@ const stories = [
     image: '/images/sheer-khurma.jpg',
     story: 'Every Eid morning, my kitchen fills with the sweet aroma of sheer khurma. It is my way of keeping my mother\'s traditions alive.',
     recipe: 'Eid Sheer Khurma',
+    href: '/recipes/sheer-khurma',
     likes: 312,
   },
 ]
@@ -108,12 +112,14 @@ export function CommunityStories() {
                   </motion.button>
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  className="w-full mt-4 py-3 rounded-xl bg-muted hover:bg-accent/10 text-sm font-medium text-foreground transition-colors"
-                >
-                  View {story.recipe} →
-                </motion.button>
+                <Link href={story.href} className="w-full mt-4 block">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    className="w-full py-3 rounded-xl bg-muted hover:bg-accent/10 text-sm font-medium text-foreground transition-colors"
+                  >
+                    View {story.recipe} →
+                  </motion.button>
+                </Link>
               </div>
             </motion.article>
           ))}

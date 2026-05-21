@@ -5,6 +5,7 @@ import { Clock, ChefHat, Heart, Star, Share2, Printer, ChevronLeft } from 'lucid
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SmokeEffect } from '@/components/smoke-effect'
+import { RecipeActions } from '@/components/recipe-actions'
 
 export default async function RecipePage(
   props: {
@@ -12,7 +13,7 @@ export default async function RecipePage(
   }
 ) {
   const params = await props.params;
-  const recipe = getRecipeBySlug(params.slug)
+  const recipe = await getRecipeBySlug(params.slug)
 
   if (!recipe) {
     notFound()
@@ -37,12 +38,10 @@ export default async function RecipePage(
             <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium">
               Authentic Recipe
             </span>
-            {recipe.rating && (
-              <span className="flex items-center text-sm font-medium text-foreground">
-                <Star className="w-4 h-4 text-accent fill-accent mr-1" />
-                {recipe.rating}
-              </span>
-            )}
+            <span className="flex items-center text-sm font-medium text-foreground">
+              <Star className="w-4 h-4 text-accent fill-accent mr-1" />
+              {recipe.rating || 4.5}
+            </span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
             {recipe.title}
@@ -96,18 +95,7 @@ export default async function RecipePage(
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-center gap-4 mb-16 pb-12 border-b border-border">
-          <Button variant="outline" className="rounded-full px-8 border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <Heart className="w-4 h-4 mr-2" />
-            Save Recipe
-          </Button>
-          <Button variant="ghost" size="icon" className="rounded-full hover:text-accent">
-            <Share2 className="w-5 h-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="rounded-full hover:text-accent">
-            <Printer className="w-5 h-5" />
-          </Button>
-        </div>
+        <RecipeActions title={recipe.title} slug={recipe.slug} />
 
         {/* Content Split */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 lg:gap-24">

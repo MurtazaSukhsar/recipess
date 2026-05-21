@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { SearchProvider } from '@/components/search-provider'
+import { Toaster } from 'sonner'
+import Script from 'next/script'
 import './globals.css'
 
 const playfair = Playfair_Display({ 
@@ -51,22 +54,35 @@ export const viewport: Viewport = {
   maximumScale: 5,
 }
 
-export default function RootLayout({
+import { getRecipes } from '@/lib/recipes'
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const recipes = await getRecipes()
+
   return (
     <html lang="en" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased bg-background">
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9395217160216601"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SearchProvider recipes={recipes}>
+            {children}
+          </SearchProvider>
         </ThemeProvider>
+        <Toaster position="top-center" />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

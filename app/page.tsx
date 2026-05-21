@@ -8,14 +8,18 @@ import { Newsletter } from '@/components/newsletter'
 import { Footer } from '@/components/footer'
 import { MobileNav } from '@/components/mobile-nav'
 
-export default function Home() {
+import { getRecipes } from '@/lib/recipes'
+
+export default async function Home() {
+  const recipes = await getRecipes()
+
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <TrendingRecipes />
+      <TrendingRecipes recipes={recipes} />
       <Categories />
-      <FeaturedDishes />
+      <FeaturedDishes recipes={recipes} />
       <CommunityStories />
       <Newsletter />
       <Footer />

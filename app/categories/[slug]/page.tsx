@@ -13,7 +13,7 @@ export default async function CategoryPage(
 ) {
   const params = await props.params;
   const categorySlug = params.slug;
-  const categoryRecipes = getRecipesByCategory(categorySlug);
+  const categoryRecipes = await getRecipesByCategory(categorySlug);
 
   // Format the category name for display
   const categoryName = categorySlug

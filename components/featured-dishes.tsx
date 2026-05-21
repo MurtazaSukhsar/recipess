@@ -5,9 +5,12 @@ import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Star, Clock, ChefHat, Bookmark } from 'lucide-react'
-import { recipes } from '@/lib/recipes'
 
-export function FeaturedDishes() {
+interface FeaturedDishesProps {
+  recipes: any[]; // Or Recipe type
+}
+
+export function FeaturedDishes({ recipes }: FeaturedDishesProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const featuredDishes = recipes.filter(r => r.featured)

@@ -5,8 +5,11 @@ import { Search, Play, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSearch } from '@/components/search-provider'
 
 export function Hero() {
+  const { setIsSearchOpen } = useSearch()
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -65,14 +68,15 @@ export function Hero() {
           >
             <div className="relative group">
               <div className="absolute inset-0 bg-accent/20 rounded-full blur-xl group-hover:blur-2xl transition-all opacity-0 group-hover:opacity-100" />
-              <div className="relative flex items-center glass rounded-full overflow-hidden">
-                <Search className="absolute left-5 w-5 h-5 text-muted-foreground" />
+              <div className="relative flex items-center glass rounded-full overflow-hidden cursor-pointer" onClick={() => setIsSearchOpen(true)}>
+                <Search className="absolute left-5 w-5 h-5 text-muted-foreground pointer-events-none" />
                 <input
                   type="text"
                   placeholder="Search for biryani, kebabs, desserts..."
-                  className="w-full py-4 pl-14 pr-32 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none"
+                  className="w-full py-4 pl-14 pr-32 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none cursor-pointer"
+                  readOnly
                 />
-                <Button className="absolute right-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
+                <Button className="absolute right-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 pointer-events-none">
                   Search
                 </Button>
               </div>
@@ -89,8 +93,9 @@ export function Hero() {
             <Button
               variant="ghost"
               className="rounded-full px-6 text-foreground hover:text-accent"
+              asChild
             >
-              Browse Categories
+              <a href="#categories">Browse Categories</a>
             </Button>
           </motion.div>
 

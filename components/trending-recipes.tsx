@@ -4,10 +4,13 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Clock, ChefHat, Heart, Bookmark } from 'lucide-react'
-import { recipes } from '@/lib/recipes'
+import { Clock, ChefHat, Heart, Bookmark, Star } from 'lucide-react'
 
-export function TrendingRecipes() {
+interface TrendingRecipesProps {
+  recipes: any[]; // Or use Recipe type if available
+}
+
+export function TrendingRecipes({ recipes }: TrendingRecipesProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
@@ -79,7 +82,11 @@ export function TrendingRecipes() {
                     <h3 className="text-xl font-serif font-semibold text-white mb-2 group-hover:text-accent transition-colors">
                       {recipe.title}
                     </h3>
-                    <div className="flex items-center gap-4 text-white/80 text-sm">
+                    <div className="flex items-center gap-4 text-white/80 text-sm flex-wrap">
+                      <span className="flex items-center gap-1 font-medium text-white">
+                        <Star className="w-4 h-4 text-accent fill-accent" />
+                        {recipe.rating || 4.5}
+                      </span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
                         {recipe.time}

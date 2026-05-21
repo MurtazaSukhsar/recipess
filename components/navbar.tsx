@@ -5,19 +5,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Menu, X, Heart, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
+import { useSearch } from '@/components/search-provider'
+import { toast } from 'sonner'
 
 const navLinks = [
-  { name: 'Home', href: '#' },
-  { name: 'Recipes', href: '#recipes' },
-  { name: 'Categories', href: '#categories' },
-  { name: 'Ramadan', href: '#ramadan' },
-  { name: 'Stories', href: '#stories' },
+  { name: 'Home', href: '/' },
+  { name: 'Recipes', href: '/#recipes' },
+  { name: 'Categories', href: '/#categories' },
 ]
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
+  const { setIsSearchOpen } = useSearch()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -45,15 +46,28 @@ export function Navbar() {
             {/* Logo */}
             <motion.a
               href="#"
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
               whileHover={{ scale: 1.02 }}
             >
-              <span className="text-xl lg:text-2xl font-serif font-bold text-primary dark:text-primary">
-                Bohra
-              </span>
-              <span className="text-xl lg:text-2xl font-serif text-accent">
-                Recipes
-              </span>
+              <div className="relative h-12 w-12 sm:h-14 sm:w-14 flex items-center justify-center">
+                {/* Fallback styling for when the image is missing, so it doesn't break */}
+                <img 
+                  src="/logo.png" 
+                  alt="Dawoodi Bohra Cuisines Logo" 
+                  className="object-contain w-full h-full"
+                  onError={(e) => {
+                    e.currentTarget.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23e5e7eb"/><text x="50" y="55" font-family="sans-serif" font-size="30" text-anchor="middle" fill="%239ca3af">Logo</text></svg>'
+                  }}
+                />
+              </div>
+              <div className="hidden sm:flex items-center gap-1">
+                <span className="text-xl lg:text-2xl font-serif font-bold text-primary dark:text-primary">
+                  Bohra
+                </span>
+                <span className="text-xl lg:text-2xl font-serif text-accent">
+                  Recipes
+                </span>
+              </div>
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -75,36 +89,14 @@ export function Navbar() {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setIsSearchOpen(true)}
                 className="p-2 rounded-full hover:bg-muted transition-colors"
                 aria-label="Search"
               >
                 <Search className="w-5 h-5 text-foreground" />
               </motion.button>
 
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-full hover:bg-muted transition-colors"
-                aria-label="Favorites"
-              >
-                <Heart className="w-5 h-5 text-foreground" />
-              </motion.button>
-
-              {mounted && (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="p-2 rounded-full hover:bg-muted transition-colors"
-                  aria-label="Toggle theme"
-                >
-                  {theme === 'dark' ? (
-                    <Sun className="w-5 h-5 text-accent" />
-                  ) : (
-                    <Moon className="w-5 h-5 text-primary" />
-                  )}
-                </motion.button>
-              )}
+              {/* The heart and theme toggle were removed per request */}
 
               <Button
                 variant="outline"
