@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { supabase as legacySupabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
+  const supabaseServer = await createClient()
+  const { data: { user } } = await supabaseServer.auth.getUser()
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   try {
     const newRecipe = await request.json()
 
@@ -17,7 +25,7 @@ export async function POST(request: NextRequest) {
     // Omit ID to let Supabase generate a UUID (if ID is passed as a string from the form, delete it)
     delete newRecipe.id;
     
-    const { data, error } = await supabase.from('recipes').insert([newRecipe]).select().single()
+    const { data, error } = await supabaseServer.from('recipes').insert([newRecipe]).select().single()
 
     if (error) {
       console.error('Supabase Error:', error)

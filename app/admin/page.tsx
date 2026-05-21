@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Upload, Plus, Trash2, ChevronLeft, Save, Loader2 } from 'lucide-react'
+import { Upload, Plus, Trash2, ChevronLeft, Save, Loader2, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import Link from 'next/link'
+import { logout } from '@/app/login/actions'
 
 export default function AdminPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -120,7 +121,14 @@ export default function AdminPage() {
             <ChevronLeft className="w-5 h-5" />
           </Link>
         </Button>
-        <h1 className="text-3xl font-serif font-bold text-primary">Admin Dashboard</h1>
+        <h1 className="text-3xl font-serif font-bold text-primary flex-1">Admin Dashboard</h1>
+        
+        <form action={logout}>
+          <Button variant="ghost" className="text-red-500 hover:text-red-600 hover:bg-red-500/10">
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
+        </form>
       </div>
 
       <motion.div

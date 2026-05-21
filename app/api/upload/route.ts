@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import cloudinary from '@/lib/cloudinary'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
+  const supabaseServer = await createClient()
+  const { data: { user } } = await supabaseServer.auth.getUser()
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   try {
     const formData = await request.formData()
     const file = formData.get('file') as File

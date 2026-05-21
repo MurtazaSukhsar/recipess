@@ -32,12 +32,14 @@ export function TrendingRecipes({ recipes }: TrendingRecipesProps) {
               Trending Recipes
             </h2>
           </div>
-          <motion.button
-            whileHover={{ x: 5 }}
-            className="text-sm font-medium text-primary dark:text-accent hover:underline underline-offset-4"
-          >
-            View all recipes →
-          </motion.button>
+          <Link href="/recipes">
+            <motion.span
+              whileHover={{ x: 5 }}
+              className="inline-block text-sm font-medium text-primary dark:text-accent hover:underline underline-offset-4"
+            >
+              View all recipes →
+            </motion.span>
+          </Link>
         </motion.div>
 
         {/* Horizontal Scroll Container */}

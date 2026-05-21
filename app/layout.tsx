@@ -65,13 +65,15 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-background">
+      <head>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9395217160216601"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+      </head>
+      <body className="font-sans antialiased bg-background">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
