@@ -4,67 +4,13 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Category } from '@/lib/categories'
 
-const categories = [
-  { 
-    name: 'Biryani & Rice', 
-    slug: 'biryani-rice',
-    count: 45, 
-    image: '/images/biryani.jpg',
-    color: 'from-amber-500/20'
-  },
-  { 
-    name: 'Curries', 
-    slug: 'curries',
-    count: 62, 
-    image: '/images/curry.jpg',
-    color: 'from-orange-500/20'
-  },
-  { 
-    name: 'Kebabs & Tikka', 
-    slug: 'kebabs-tikka',
-    count: 38, 
-    image: '/images/kebab.jpg',
-    color: 'from-red-500/20'
-  },
-  { 
-    name: 'Breads', 
-    slug: 'breads',
-    count: 24, 
-    image: '/images/naan.jpg',
-    color: 'from-yellow-500/20'
-  },
-  { 
-    name: 'Desserts', 
-    slug: 'desserts',
-    count: 56, 
-    image: '/images/sheer-khurma.jpg',
-    color: 'from-pink-500/20'
-  },
-  { 
-    name: 'Snacks', 
-    slug: 'snacks',
-    count: 41, 
-    image: '/images/samosa.jpg',
-    color: 'from-emerald-500/20'
-  },
-  { 
-    name: 'Lentils & Dal', 
-    slug: 'lentils-dal',
-    count: 33, 
-    image: '/images/dal.jpg',
-    color: 'from-yellow-600/20'
-  },
-  { 
-    name: 'Drinks', 
-    slug: 'drinks',
-    count: 14, 
-    image: '/images/drinks.png',
-    color: 'from-pink-600/20'
-  },
-]
+interface CategoriesProps {
+  categories: Category[];
+}
 
-export function Categories() {
+export function Categories({ categories }: CategoriesProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
