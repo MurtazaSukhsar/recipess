@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Star, Clock, ChefHat, Bookmark } from 'lucide-react'
+import { Star, Clock, ChefHat } from 'lucide-react'
 
 interface FeaturedDishesProps {
   recipes: any[]; // Or Recipe type
@@ -61,14 +61,6 @@ export function FeaturedDishes({ recipes }: FeaturedDishesProps) {
                 </span>
               </div>
 
-              {/* Save Button */}
-              <div
-                className="absolute top-6 right-6 p-3 rounded-full glass hover:bg-white/20 transition-colors z-10 cursor-pointer"
-                aria-label="Save recipe"
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
-              >
-                <Bookmark className="w-5 h-5 text-white" />
-              </div>
 
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-8 z-10">

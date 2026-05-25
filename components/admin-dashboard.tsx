@@ -107,6 +107,22 @@ export function AdminDashboard({ initialRecipes, initialCategories, initialStori
     }
   }
 
+  const handleToggleTrending = async (recipe: Recipe) => {
+    try {
+      const updatedTrending = !recipe.trending
+      const res = await fetch(`/api/recipes/${recipe.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trending: updatedTrending }),
+      })
+      if (!res.ok) throw new Error('Failed to update')
+      setRecipes(recipes.map(r => r.id === recipe.id ? { ...r, trending: updatedTrending } : r))
+      toast.success(`Recipe ${updatedTrending ? 'added to' : 'removed from'} trending`)
+    } catch (error) {
+      toast.error('Failed to update trending status')
+    }
+  }
+
   const generateSlug = (title: string) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
   }
@@ -375,9 +391,15 @@ export function AdminDashboard({ initialRecipes, initialCategories, initialStori
                     </div>
                   </div>
                   <div className="flex items-center gap-6 sm:ml-auto w-full sm:w-auto justify-between sm:justify-end">
-                    <div className="flex items-center gap-2">
-                      <Switch checked={!!recipe.featured} onCheckedChange={() => handleToggleFeatured(recipe)} />
-                      <span className="text-sm font-medium">Featured</span>
+                    <div className="flex items-center gap-4 flex-wrap justify-end">
+                      <div className="flex items-center gap-2">
+                        <Switch checked={!!recipe.trending} onCheckedChange={() => handleToggleTrending(recipe)} />
+                        <span className="text-sm font-medium text-amber-500">Trending</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Switch checked={!!recipe.featured} onCheckedChange={() => handleToggleFeatured(recipe)} />
+                        <span className="text-sm font-medium">Featured</span>
+                      </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <Button variant="outline" size="icon" onClick={() => handleEditRecipeClick(recipe)}><Edit className="w-4 h-4" /></Button>

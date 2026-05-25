@@ -1,48 +1,31 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { 
-  Instagram, 
-  Youtube, 
-  Facebook, 
-  Twitter,
-  Heart,
-  ChefHat
-} from 'lucide-react'
+import { ChefHat } from 'lucide-react'
 
 const footerLinks = {
   recipes: [
-    { name: 'All Recipes', href: '#' },
-    { name: 'Trending', href: '#' },
-    { name: 'Quick & Easy', href: '#' },
-    { name: 'Video Tutorials', href: '#' },
+    { name: 'All Recipes', href: '/recipes' },
+    { name: 'Trending', href: '/#recipes' },
+    { name: 'Featured', href: '/#recipes' },
   ],
   categories: [
-    { name: 'Biryani', href: '#' },
-    { name: 'Curries', href: '#' },
-    { name: 'Desserts', href: '#' },
-    { name: 'Ramadan Specials', href: '#' },
+    { name: 'Biryani & Rice', href: '/categories/biryani-rice' },
+    { name: 'Curries', href: '/categories/non-veg-curries' },
+    { name: 'Desserts', href: '/categories/desserts' },
+    { name: 'Dawoodi Bohra Special', href: '/categories/dawoodi-bohra-special' },
   ],
   community: [
-    { name: 'Share Recipe', href: '#' },
-    { name: 'Stories', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Forum', href: '#' },
+    { name: 'Share a Story', href: '/#stories' },
   ],
   about: [
-    { name: 'Our Story', href: '#' },
-    { name: 'Contact', href: '#' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
+    { name: 'Home', href: '/' },
+    { name: 'All Recipes', href: '/recipes' },
+    { name: 'Categories', href: '/#categories' },
   ],
 }
 
-const socialLinks = [
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
-  { name: 'Facebook', icon: Facebook, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-]
+
 
 export function Footer() {
   return (
@@ -58,25 +41,10 @@ export function Footer() {
                 Bohra Recipes
               </span>
             </div>
-            <p className="text-primary-foreground/70 text-sm max-w-xs mb-6">
+            <p className="text-primary-foreground/70 text-sm max-w-xs">
               Preserving the authentic flavors of Dawoodi Bohra cuisine, 
               one recipe at a time.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent/20 transition-colors"
-                  aria-label={social.name}
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
           </div>
 
           {/* Links */}
@@ -129,7 +97,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">About</h4>
+            <h4 className="font-semibold mb-4">Navigate</h4>
             <ul className="space-y-3">
               {footerLinks.about.map((link) => (
                 <li key={link.name}>
@@ -150,9 +118,7 @@ export function Footer() {
           <p className="text-sm text-primary-foreground/60">
             © {new Date().getFullYear()} Bohra Recipes. All rights reserved.
           </p>
-          <p className="text-sm text-primary-foreground/60 flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-accent fill-accent" /> for the Bohra community
-          </p>
+
         </div>
       </div>
     </footer>

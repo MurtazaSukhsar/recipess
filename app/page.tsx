@@ -7,20 +7,23 @@ import { CommunityStories } from '@/components/community-stories'
 import { Footer } from '@/components/footer'
 import { MobileNav } from '@/components/mobile-nav'
 
-import { getRecipes } from '@/lib/recipes'
+import { getRecipes, getTrendingRecipes } from '@/lib/recipes'
 import { getCategories } from '@/lib/categories'
 import { getApprovedStories } from '@/lib/stories'
 
 export default async function Home() {
-  const recipes = await getRecipes()
-  const categories = await getCategories()
-  const stories = await getApprovedStories()
+  const [recipes, trendingRecipes, categories, stories] = await Promise.all([
+    getRecipes(),
+    getTrendingRecipes(),
+    getCategories(),
+    getApprovedStories(),
+  ])
 
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <TrendingRecipes recipes={recipes} />
+      <TrendingRecipes recipes={trendingRecipes} />
       <Categories categories={categories} />
       <FeaturedDishes recipes={recipes} />
       <CommunityStories stories={stories} />

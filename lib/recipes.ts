@@ -10,6 +10,7 @@ export interface Recipe {
   chef?: string;
   saves: number;
   featured?: boolean;
+  trending?: boolean;
   ingredients: string[];
   instructions: string[];
   category: string;
@@ -45,7 +46,11 @@ export async function getRecipesByCategory(category: string) {
 }
 
 export async function getTrendingRecipes() {
-  const { data, error } = await supabase.from('recipes').select('*').order('saves', { ascending: false }).limit(3)
+  const { data, error } = await supabase
+    .from('recipes')
+    .select('*')
+    .eq('trending', true)
+    .order('saves', { ascending: false })
   if (error) {
     console.error('Error fetching trending recipes:', error)
     return []

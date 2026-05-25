@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Clock, ChefHat, Heart, Bookmark, Star } from 'lucide-react'
+import { Clock, ChefHat, Heart, Star } from 'lucide-react'
 
 interface TrendingRecipesProps {
   recipes: any[]; // Or use Recipe type if available
@@ -51,7 +51,9 @@ export function TrendingRecipes({ recipes }: TrendingRecipesProps) {
             className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {recipes.filter(r => !r.featured).map((recipe, index) => (
+            {recipes.length === 0 ? (
+              <p className="text-muted-foreground text-sm py-8">No trending recipes yet. Mark some as trending from the admin panel.</p>
+            ) : recipes.map((recipe, index) => (
               <motion.article
                 key={recipe.id}
                 initial={{ opacity: 0, x: 50 }}
@@ -70,14 +72,7 @@ export function TrendingRecipes({ recipes }: TrendingRecipesProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                   
-                  {/* Save Button */}
-                  <div
-                    className="absolute top-4 right-4 p-2.5 rounded-full glass hover:bg-accent/20 transition-colors z-10"
-                    aria-label="Save recipe"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <Bookmark className="w-5 h-5 text-white" />
-                  </div>
+
 
                   {/* Recipe Info Overlay */}
                   <div className="absolute bottom-4 left-4 right-4">

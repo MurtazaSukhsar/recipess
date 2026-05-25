@@ -2,6 +2,24 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase as legacySupabase } from '@/lib/supabase'
 import { createClient } from '@/lib/supabase/server'
 
+export async function GET() {
+  const { data, error } = await legacySupabase
+    .from('recipes')
+    .select('id, slug, title, category')
+    .order('title', { ascending: true })
+
+  if (error) {
+    console.error('Error fetching recipes:', error)
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  return NextResponse.json(data, {
+    headers: {
+      'Cache-Control': 'no-store',
+    },
+  })
+}
+
 export async function POST(request: NextRequest) {
   const supabaseServer = await createClient()
   const { data: { user } } = await supabaseServer.auth.getUser()
