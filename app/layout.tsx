@@ -85,7 +85,7 @@ export default async function RootLayout({
           </SearchProvider>
         </ThemeProvider>
         <Toaster position="top-center" />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Analytics />
       </body>
     </html>
   )
