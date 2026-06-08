@@ -66,9 +66,10 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-9639003866744122" />
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9395217160216601"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9639003866744122"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
