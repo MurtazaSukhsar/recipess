@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   description: 'Discover authentic Bohra recipes passed down through generations. Premium collection of traditional Dawoodi Bohra dishes for Ramadan, Eid, and everyday cooking.',
   keywords: ['Bohra recipes', 'Dawoodi Bohra cuisine', 'Islamic food', 'Ramadan recipes', 'Eid dishes', 'Indian Muslim food'],
   generator: 'v0.app',
+  other: {
+    'google-adsense-account': 'ca-pub-9639003866744122',
+  },
   icons: {
     icon: [
       {
@@ -66,12 +69,10 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
-        <meta name="google-adsense-account" content="ca-pub-9639003866744122" />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9639003866744122"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </head>
       <body className="font-sans antialiased bg-background">
